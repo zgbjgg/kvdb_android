@@ -27,13 +27,18 @@ WARNING: Terminal app must be started as superuser (root).
 
 First move to the /mnt/sdcard/kvdb_android directory:
 
+```sh
 	$ cd /mnt/sdcard/kvdb_android
+```
 	
 Now compile and start the backend by typing two commands:
 
+```sh
 	$ sh kvdb-android-tool compile
-	
+```
+```sh	
 	$ sh kvdb-android-tool start
+```
 	
 This initializes the kvdb_android backend for using from any application (apk).
 
