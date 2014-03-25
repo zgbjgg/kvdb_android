@@ -23,7 +23,7 @@ Installing
 
 To install kvdb_android backend database just download this repository and copy to the sdcard on the desired device, then compile and start the backend from any terminal application:
 
-WARNING: Terminal app must be started as superuser (root).
+> WARNING: Terminal app must be started as superuser (root).
 
 First move to the /mnt/sdcard/kvdb_android directory:
 
@@ -73,7 +73,8 @@ Api usage
 =========
 
 To use the kvdb_android_mnesia api accessing to the data then see the module code under src directory.
-NOTE: Add examples how to use API must be included in next commits.
+
+> NOTE: Add examples how to use API must be included in next commits.
 
 The java library interface
 ===========================
