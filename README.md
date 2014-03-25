@@ -1,8 +1,8 @@
 kvdb_android
 ============
 
-Key/Value Database Backend for Android - Mnesia Based
-==
+###### Key/Value Database Backend for Android - Mnesia Based
+
 
 The application is designed for storing data into a mnesia database backend on a single Android device, using erlang
 as the main backend for controlling the stream of data in actions over database as:
