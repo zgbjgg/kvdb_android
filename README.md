@@ -74,6 +74,7 @@ The java library interface
 ===========================
 
 The kvdb_android can be controlled for an external agent from a designed library created in java (jar), connected through a 'non-blocking' socket. To use just load the library into your project.
+The example how to use the interface within an example on this project also in the java library documentation can be found.
 
 For more information how to use the library refer to [kvdb_android java library](https://github.com/zgbjgg/kvdb_android_java_lib)
 
