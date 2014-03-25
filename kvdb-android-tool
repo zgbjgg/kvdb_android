@@ -1,0 +1,58 @@
+#
+# Copyright (c) 2012-2013, Jorge Garrido <zgbjgg@gmail.com> 
+# All rights reserved.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+# Helper script for compile & clean erlang code on Android 
+# This scripts also provide shortcuts to start an erlang node.
+# This script is used for building the system target!
+#
+#
+
+# kvdb_android
+KVDB_ANDROID=kvdb_android
+
+#
+# ERTS_PATH (default as erlang.apk installation)
+# If you can compile this source code outside android, then point to your erl command!
+#
+ERTS_PATH=/data/data/com.ernovation.erlangforandroid/files/erlang/erts-5.10.1
+# ERTS_PATH=/usr/local
+
+# LOCAL: our path
+LOCAL=$PWD
+
+# INCLUDE: include app_dir 
+INCLUDE=$LOCAL/include
+
+# EBIN: ebin app_dir
+EBIN=$LOCAL/ebin
+
+#SRC: src app_dir
+SRC=$LOCAL/src
+
+
+## evaluate cases
+case "$1" in
+  compile)
+	$ERTS_PATH/bin/erlc -I $INCLUDE -o $EBIN $SRC/*.erl
+        ;;
+  clean)
+        echo "Cleaning $PWD ..."
+        rm $EBIN/*.beam
+        ;;
+  start)
+	# Startup for epmd, before start node, start epmd (erlang port mapper daemon)
+	# $ERTS_PATH/bin/epmd -daemon
+        $ERTS_PATH/bin/erl -detached -pa $EBIN -s $KVDB_ANDROID 
+        echo "Starting process at $$"
+        ;;
+  *)
+        echo $"Usage: $0 { compile | clean | start }"
+        exit 1
+esac
+
+exit $?

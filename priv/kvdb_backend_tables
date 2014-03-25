@@ -1,0 +1,2 @@
+{your_table, [yourkey, data1, data2, data3]}.
+{my_table, [mykey, data1, data2, data3]}.
