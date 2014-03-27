@@ -65,7 +65,7 @@ Identifier must be a binary term and is configured when a request is made from t
 
 	Module:Function(Method, Body).
 	
-Method could be values as: <<"GET">>, <<"POST">>, <<"PUT">>, <<"DEL">>, and Body is a binary string containing a valid data (example: json, xml or plain text).
+Method could be values as: ```<<"GET">>, <<"POST">>, <<"PUT">>, <<"DEL">>```, and Body is a binary string containing a valid data (example: json, xml or plain text).
 Then in your Module:Function/2 you must treat the data to execute actions on the backend.
 
 
