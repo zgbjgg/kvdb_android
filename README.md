@@ -140,6 +140,8 @@ To delete data the table name and key for the record must be provided to the API
 ```
 The API must be used inside a target module for making a correct query to the backend, as the logical treating of the incoming request and data.
 
+> You can find the target example module under src directory, the module name is module_test and is the logical module that control the incoming data from the java application(apk)
+
 The java library interface
 ===========================
 
