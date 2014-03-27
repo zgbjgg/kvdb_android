@@ -16,7 +16,7 @@ as the main backend for controlling the stream of data in actions over database 
 The erlang base system must be installed on the Android device before install the backend, to install erlang get the apk for the platform. The apk installs erlang and many libraries such as mnesia.
 To ensure erlang is installed this path must be accesible by the system:
 
-  /data/data/com.ernovation.erlangforandroid/files/erlang/erts-5.10.1
+> /data/data/com.ernovation.erlangforandroid/files/erlang/erts-5.10.1
 
 Installing
 ==========
@@ -72,9 +72,73 @@ Then in your Module:Function/2 you must treat the data to execute actions on the
 Api usage
 =========
 
-To use the kvdb_android_mnesia api accessing to the data then see the module code under src directory.
+### Storing new data
 
-> NOTE: Add examples how to use API must be included in next commits.
+To store data into kvdb android backend use a table name already created and a key with its attributes.
+
+> Before store data you must have defined the table, key and attributes
+
+```erlang
+	4> kvdb_android:put(your_table, [{yourkey, "xyz"}, {data1, 2}, {data2, "another string"}, {data3, another_atom}]).
+	{ok,<<"ok">>}	
+```
+### Fetching data 
+
+To retrieve data back from kvdb android backend there are many cases or queries that can be used. The data back is returned as an erlang list.
+
+**fetching all attributes of all records from a table**
+```erlang
+	5> kvdb_android:get(your_table, all, none, none).
+	{ok,[{your_table,"xyz",2,"another string",another_atom},
+     	{your_table,"abc",1,"this is a string",this_is_an_atom}]}
+```
+**fetching one attribute of all records from a table**
+```erlang
+	7> kvdb_android:get(your_table, data2, none, none).
+	{ok,["another string","this is a string"]}
+```
+**fetching all records from a table matching data**
+```erlang
+	8> kvdb_android:get(your_table, all, [yourkey], ["xyz"]).
+	{ok,[{your_table,"xyz",2,"another string",another_atom}]}
+```
+**fetching one attribute from a table matching data**
+```erlang
+	9> kvdb_android:get(your_table, data1, [yourkey], ["abc"]).
+	{ok,[1]}
+```
+**fetching with multiple matching (AND)**
+```erlang
+	11> kvdb_android:get(your_table, data1, [yourkey, data1], ["abc", 1]).
+	{ok,[1]}
+```
+**fetching when a record no exists in the backend**
+```erlang
+	10> kvdb_android:get(your_table, data1, [yourkey, data1], ["abc", 2]).
+	{ok,<<"error_notfound">>}
+```
+### Updating data
+
+For updating data there are two options: replace or append data. The replace is executed with any data type but append just use on string and number data types.
+
+**replace an attribute**
+```erlang
+	13> kvdb_android:update(replace, your_table, data1, 3, yourkey, "abc").
+	{ok,<<"ok">>}
+```
+**append an attribute**
+```erlang
+	16> kvdb_android:update(append, your_table, data1, 3, yourkey, "abc").
+	{ok,<<"ok">>}
+```
+### Deleting data
+
+To delete data the table name and key for the record must be provided to the API
+```erlang
+	19> kvdb_android:delete(your_table, "abc").
+	{ok,<<"ok">>}
+```
+The API must be used inside a target module for making a correct query to the backend, as the logical treating of the incoming request and data.
 
 The java library interface
 ===========================
