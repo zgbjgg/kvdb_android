@@ -23,7 +23,7 @@ ERTS_PATH=/data/data/com.ernovation.erlangforandroid/files/erlang/erts-5.10.1
 # ERTS_PATH=/usr/local
 
 # LOCAL: our path
-LOCAL=$PWD
+LOCAL=$1
 
 # INCLUDE: include app_dir 
 INCLUDE=$LOCAL/include
@@ -36,12 +36,12 @@ SRC=$LOCAL/src
 
 
 ## evaluate cases
-case "$1" in
+case "$2" in
   compile)
 	$ERTS_PATH/bin/erlc -I $INCLUDE -o $EBIN $SRC/*.erl
         ;;
   clean)
-        echo "Cleaning $PWD ..."
+        echo "Cleaning ..."
         rm $EBIN/*.beam
         ;;
   start)
