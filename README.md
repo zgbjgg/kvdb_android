@@ -34,10 +34,10 @@ First move to the /mnt/sdcard/kvdb_android directory:
 Now compile and start the backend by typing two commands:
 
 ```sh
-	$ sh kvdb-android-tool compile
+	$ sh kvdb-android-tool /path/to/kvdb_android compile
 ```
 ```sh	
-	$ sh kvdb-android-tool start
+	$ sh kvdb-android-tool /path/to/kvdb_android start
 ```
 	
 This initializes the kvdb_android backend for using from any application (apk).
